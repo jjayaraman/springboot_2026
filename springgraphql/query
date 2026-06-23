@@ -1,0 +1,39 @@
+query FindEmployeeById{
+  findById(id: "2") {
+    id,
+    firstName,
+    lastName,
+    email
+  }
+}
+
+query GetEmployees{
+  employees {
+    id,
+    firstName,
+    lastName,
+    email
+  }
+}
+
+mutation CreateEmployee{
+  create(firstName:"david",lastName: "ddd", email: "test@gmail.com.com"){
+    id,
+    firstName,
+    lastName,
+    email
+  }
+}
+
+mutation DeleteEmployee{
+  deleteEmployee(id: "1") {
+    id,
+    firstName,
+    lastName,
+    email
+  }
+
+}
+
+
+

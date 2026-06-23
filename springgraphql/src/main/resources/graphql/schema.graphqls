@@ -1,0 +1,17 @@
+type Query {
+    employees: [Employee]
+    findById(id:ID!): Employee
+}
+
+type Mutation {
+    create(firstName:String, lastName:String, email:String):Employee
+    update(id:ID!,firstName:String, lastName:String, email:String):Employee
+    deleteEmployee(id:ID!):Employee
+}
+
+type Employee {
+    id: ID!
+    firstName: String
+    lastName: String
+    email: String
+}
