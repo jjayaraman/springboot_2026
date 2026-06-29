@@ -1,0 +1,9 @@
+services:
+  postgres:
+    image: 'postgres:latest'
+    environment:
+      - 'POSTGRES_DB=crudpostgresgraphql'
+      - 'POSTGRES_PASSWORD=password'
+      - 'POSTGRES_USER=jay'
+    ports:
+      - '5432'

@@ -1,11 +1,11 @@
-
 type Query {
     getCustomers: [CustomerOutput]
 }
 
-
 type Mutation {
     createCustomer(input: CustomerInput): CustomerOutput
+    updateCustomer(id: ID!, input: CustomerInput): CustomerOutput
+    deleteCustomer(id:ID!): Boolean!
 }
 
 input CustomerInput {

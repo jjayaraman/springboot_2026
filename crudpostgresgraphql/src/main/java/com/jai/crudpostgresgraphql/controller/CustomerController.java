@@ -29,4 +29,16 @@ public class CustomerController {
     public Customer createCustomer(@Argument CustomerInputDto input) {
         return customerService.createCustomer(input);
     }
+
+    @MutationMapping
+    public Customer updateCustomer(@Argument Long id, @Argument CustomerInputDto input) {
+        return customerService.updateCustomer(id, input);
+    }
+
+    @MutationMapping
+    public boolean deleteCustomer(@Argument Long id) {
+        customerService.deleteCustomer(id);
+        return true;
+    }
+
 }
