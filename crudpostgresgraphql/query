@@ -1,0 +1,48 @@
+query GetCustomers {
+  getCustomers {
+    id
+    firstName
+    lastName
+    email
+    phoneNumber
+    addressLine1
+    addressLine2
+    city
+    state
+    country
+    postCode
+    createdDate
+    updatedDate
+  }
+}
+
+mutation CreateCustomer {
+  createCustomer(
+    input: {
+      firstName: "Jay7"
+      lastName: "Jay7"
+      email: "hello@gmail.com"
+      phoneNumber: "0123456789"
+      addressLine1: "address line 1"
+      addressLine2: "address line 2"
+      city: "nice city"
+      state: "state"
+      country: "country"
+      postCode: "xx1 2we"
+    }
+  ) {
+    id
+    firstName
+    lastName
+    email
+    phoneNumber
+    addressLine1
+    addressLine2
+    city
+    state
+    country
+    postCode
+    createdDate
+    updatedDate
+  }
+}

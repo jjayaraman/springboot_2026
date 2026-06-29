@@ -17,7 +17,7 @@ query GetEmployees{
 }
 
 mutation CreateEmployee{
-  create(firstName:"david",lastName: "ddd", email: "test@gmail.com.com"){
+  create(firstName:"david",lastName: "ddd", email: "test@gmail.com.com", departmentId: "1"){
     id,
     firstName,
     lastName,

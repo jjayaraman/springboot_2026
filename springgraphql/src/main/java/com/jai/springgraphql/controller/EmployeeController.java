@@ -1,16 +1,25 @@
 package com.jai.springgraphql.controller;
 
+import com.jai.springgraphql.model.Department;
 import com.jai.springgraphql.model.Employee;
 import com.jai.springgraphql.repository.EmployeeRepository;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.graphql.data.method.annotation.Argument;
+import org.springframework.graphql.data.method.annotation.BatchMapping;
 import org.springframework.graphql.data.method.annotation.MutationMapping;
 import org.springframework.graphql.data.method.annotation.QueryMapping;
 import org.springframework.stereotype.Controller;
 
 import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
+
 
 @Controller
 public class EmployeeController {
+
+    Logger logger = LoggerFactory.getLogger(EmployeeController.class);
 
     EmployeeRepository employeeRepository;
 
@@ -29,13 +38,13 @@ public class EmployeeController {
     }
 
     @MutationMapping
-    public Employee create(@Argument String firstName, @Argument String lastName, @Argument String email) {
-        return employeeRepository.create(firstName, lastName, email);
+    public Employee create(@Argument String firstName, @Argument String lastName, @Argument String email, @Argument String departmentId) {
+        return employeeRepository.create(firstName, lastName, email, departmentId);
     }
 
     @MutationMapping
-    public Employee update(@Argument String id, @Argument String firstName, @Argument String lastName, @Argument String email) {
-        return employeeRepository.update(id, firstName, lastName, email);
+    public Employee update(@Argument String id, @Argument String firstName, @Argument String lastName, @Argument String email, @Argument String departmentId) {
+        return employeeRepository.update(id, firstName, lastName, email, departmentId);
     }
 
     @MutationMapping
@@ -44,4 +53,19 @@ public class EmployeeController {
     }
 
 
+    @BatchMapping(field = "department")
+    public Map<Employee, Department> department(List<Employee> employees) {
+
+        logger.debug("Batch employees ");
+
+        // Mock department data
+        final Map<String, Department> departments =
+                Map.of("1", new Department("1", "IT"),
+                        "2", new Department("2", "HR"));
+
+        return employees.stream().collect(Collectors.toMap(
+                employee -> employee,
+                employee -> departments.getOrDefault(employee.departmentId(), new Department("unknown", "unknown"))
+        ));
+    }
 }
