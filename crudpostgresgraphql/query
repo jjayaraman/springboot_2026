@@ -20,8 +20,8 @@ mutation CreateCustomer {
   createCustomer(
     input: {
       firstName: "Jay7"
-      lastName: "Jay7"
-      email: "hello@gmail.com"
+      lastName: "J"
+      email: "hello@gmai"
       phoneNumber: "0123456789"
       addressLine1: "address line 1"
       addressLine2: "address line 2"
@@ -31,6 +31,24 @@ mutation CreateCustomer {
       postCode: "xx1 2we"
     }
   ) {
+    id
+    firstName
+    lastName
+    email
+    phoneNumber
+    addressLine1
+    addressLine2
+    city
+    state
+    country
+    postCode
+    createdDate
+    updatedDate
+  }
+}
+
+mutation updateCustomer {
+  updateCustomer(id: "1", input: {firstName: "updated"}) {
     id
     firstName
     lastName

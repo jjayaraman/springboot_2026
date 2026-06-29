@@ -3,6 +3,7 @@ package com.jai.crudpostgresgraphql.controller;
 import com.jai.crudpostgresgraphql.dto.CustomerInputDto;
 import com.jai.crudpostgresgraphql.entity.Customer;
 import com.jai.crudpostgresgraphql.service.CustomerService;
+import jakarta.validation.Valid;
 import org.springframework.graphql.data.method.annotation.Argument;
 import org.springframework.graphql.data.method.annotation.MutationMapping;
 import org.springframework.graphql.data.method.annotation.QueryMapping;
@@ -26,12 +27,12 @@ public class CustomerController {
     }
 
     @MutationMapping
-    public Customer createCustomer(@Argument CustomerInputDto input) {
+    public Customer createCustomer(@Argument @Valid CustomerInputDto input) {
         return customerService.createCustomer(input);
     }
 
     @MutationMapping
-    public Customer updateCustomer(@Argument Long id, @Argument CustomerInputDto input) {
+    public Customer updateCustomer(@Argument Long id, @Argument @Valid CustomerInputDto input) {
         return customerService.updateCustomer(id, input);
     }
 
